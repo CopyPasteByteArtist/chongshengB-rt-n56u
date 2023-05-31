@@ -3,12 +3,13 @@ SRC_NAME=openvpn-2.4.12
 CFLAGS += -ffunction-sections -fdata-sections
 LDFLAGS += -Wl,--gc-sections
 
-if [ ! -d $(SRC_NAME) ]; then
-	tar zxf $(SRC_NAME).tar.gz;
-fi
-
-all: config_test
+all: extract_test config_test
 	$(MAKE) -C $(SRC_NAME)
+
+extract_test:
+	( if [ ! -d $(SRC_NAME) ]; then \
+		tar zxf $(SRC_NAME).tar.gz; \
+	fi )
 
 config_test:
 	( if [ -f ./config_done ]; then \
