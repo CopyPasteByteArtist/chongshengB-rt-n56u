@@ -3,8 +3,8 @@ name: Build MT7621-NEWIFI-D1
 on: 
   repository_dispatch:
   workflow_dispatch:
-  release:
-    types: [published]
+  #  release:
+    #  types: [published]
 #  push:
 #    tags:
 #    - 'v*'
