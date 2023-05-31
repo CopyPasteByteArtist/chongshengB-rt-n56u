@@ -45,6 +45,7 @@ jobs:
       env:
         TNAME: "NEWIFI-D1"
       run: |
+        echo "FILE_DATE=-$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
         cwd=`pwd`
         CONFIG_TOOLCHAIN_DIR=${cwd//\//\\\/}\\/toolchain-mipsel
         cd trunk
@@ -64,5 +65,5 @@ jobs:
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
-        name: Padavan-MT7621-NEWIFI-D1-$(date +"%Y%m%d%H%M")
+        name: Padavan-MT7621-NEWIFI-D1${{ env.FILE_DATE }}
         path: /opt/images
