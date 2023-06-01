@@ -59,7 +59,7 @@ jobs:
         sed -i "s/^CONFIG_TOOLCHAIN_DIR=.*$/CONFIG_TOOLCHAIN_DIR=${CONFIG_TOOLCHAIN_DIR}/g" .config
         sudo ./clear_tree_simple
         sudo ./build_firmware_modify $m 0
-        sudo mv -f images/*.* /opt/images/
+        sudo mv -f images/*.trx /opt/images/
         done
 
     - name : Upload artifact
