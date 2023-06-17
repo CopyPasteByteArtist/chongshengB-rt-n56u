@@ -1,4 +1,4 @@
-name: Build MT7621-K2P
+name: Build MT7621-NEWIFI-D1
 
 on: 
   repository_dispatch:
@@ -35,7 +35,7 @@ jobs:
       run: |
         echo 'current dir:'
         pwd
-        sed -i 's/192.168.2/192.168.6/g' trunk/user/shared/defaults.h
+        sed -i 's/192.168.2/192.168.99/g' trunk/user/shared/defaults.h
         echo 'cat trunk/user/shared/defaults.h:'
         cat trunk/user/shared/defaults.h
         cd toolchain-mipsel
@@ -43,7 +43,7 @@ jobs:
         mkdir -p /opt/images/
     - name: Build Firmware
       env:
-        TNAME: "K2P"
+        TNAME: "NEWIFI-D1"
       run: |
         echo "FILE_DATE=-$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
         cwd=`pwd`
@@ -65,5 +65,5 @@ jobs:
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
-        name: Padavan-MT7621-K2P${{ env.FILE_DATE }}
+        name: Padavan-MT7621-NEWIFI-D1${{ env.FILE_DATE }}
         path: /opt/images
