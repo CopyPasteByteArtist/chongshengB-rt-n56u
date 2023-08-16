@@ -65,5 +65,5 @@ jobs:
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
-        name: Padavan-MT7621-NEWIFI-D1${{ env.FILE_DATE }}
+        name: Padavan-MT7621-NEWIFI-D1-C${{ env.FILE_DATE }}
         path: /opt/images
