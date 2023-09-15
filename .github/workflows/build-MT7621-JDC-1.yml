@@ -30,7 +30,7 @@ jobs:
         sudo apt-get -y install automake autopoint unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
         fakeroot kmod cpio git python-docutils python3-docutils gettext \
         texinfo build-essential help2man pkg-config \
-        zlib1g-dev gnutls-dev libconfuse-dev libgmp3-dev \
+        zlib1g-dev gnutls-dev libconfuse-dev libconfuse2 libgmp3-dev \
         libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
     - name: Clone source code
       run: |
