@@ -65,5 +65,5 @@ jobs:
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
-        name: Padavan-MT7621-K2P${{ env.FILE_DATE }}
+        name: Padavan-MT7621-K2P-C${{ env.FILE_DATE }}
         path: /opt/images
