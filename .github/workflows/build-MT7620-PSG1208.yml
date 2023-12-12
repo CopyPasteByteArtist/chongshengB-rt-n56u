@@ -3,21 +3,21 @@ name: Build MT7620-PSG1208
 on: 
   repository_dispatch:
   workflow_dispatch:
-  release:
-    types: [published]
+  #  release:
+    #  types: [published]
 #  push:
 #    tags:
 #    - 'v*'
   #  branches: 
   #    - master
- # schedule:
+#  schedule:
  #   - cron: 0 17 * * 4
 #  watch:
-#    types: [started]
+   # types: [started]
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Checkout
@@ -26,10 +26,11 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo apt-get update
-        sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot \
-        cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
-        pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget
+        sudo apt-get -y update
+        sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
+        fakeroot kmod cpio git python-docutils gettext automake autopoint \
+        texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
+        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
     - name: Clone source code
       run: |
         echo 'current dir:'
@@ -44,6 +45,7 @@ jobs:
       env:
         TNAME: "PSG1208"
       run: |
+        echo "FILE_DATE=-$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
         cwd=`pwd`
         CONFIG_TOOLCHAIN_DIR=${cwd//\//\\\/}\\/toolchain-mipsel
         cd trunk
@@ -62,5 +64,5 @@ jobs:
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
-        name: Padavan-MT7620-PSG1208
+        name: Padavan-MT7620-PSG1208-C${{ env.FILE_DATE }}
         path: /opt/images
