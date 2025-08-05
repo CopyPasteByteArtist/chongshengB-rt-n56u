@@ -62,7 +62,7 @@ jobs:
         sudo ./build_firmware_modify $m 0
         sudo mv -f images/*.trx /opt/images
         sudo cp -p .config /opt/images
-        done
+        # done
 
     - name : Upload artifact
       uses: actions/upload-artifact@master
